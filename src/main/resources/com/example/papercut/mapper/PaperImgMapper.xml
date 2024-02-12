@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.papercut.mapper.PaperImgMapper">
+
+    <resultMap id="paperResultMap" type="com.example.papercut.entity.PaperImgEntity">
+            <id property="id" column="id"/>
+            <result property="img" column="img"/>
+            <result property="detailText" column="detail_text"/>
+            <result property="paperKind" column="paper_kind"/>
+            <result property="paperNum" column="paper_num"/>
+            <result property="paperTitle" column="paper_title"/>
+    </resultMap>
+    <insert id="insert">
+        insert into paper_img
+        (img, detail_text, paper_kind, paper_num, paper_title)
+        values
+        (#{img}, #{detailText}, #{paperKind}, #{paperNum}, #{paperTitle})
+    </insert>
+    <select id="getPaperImgSum" resultType="java.lang.Integer">
+        select count(*) from paper_img
+    </select>
+    <select id="selectAll" resultType="com.example.papercut.entity.PaperImgEntity">
+        select * from paper_img
+    </select>
+    <select id="selectByTitle" resultType="com.example.papercut.entity.PaperImgEntity">
+        select * from paper_img where paper_title = #{paperTitle}
+    </select>
+
+</mapper>

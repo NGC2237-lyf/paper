@@ -1,0 +1,57 @@
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+  datasource:
+    username: root
+    password: QAZlyf207
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/papercut?characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2B8
+    #   数据源其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+# Swagger配置
+swagger:
+  # 是否开启swagger
+  enabled: true
+  # 请求前缀
+  pathMapping:
+
+# Knife4j配置
+knife4j:
+  enable: true
+  enableReloadCacheParameter: true
+
+server:
+  port: 8080
+  #  context-path: /stusys
+  tomcat:
+    uri-encoding: utf-8
+  servlet:
+    encoding:
+      charset: UTF-8
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  #mybatis-plus配置
+  mybatis-plus:
+    # 配置mapper的扫描，找到所有的mapper.xml映射文件
+    mapper-locations: classpath*:mapper/**/*Mapper.xml
+    #mybatis-plus日志
+    configuration:
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    global-config:
+      #逻辑删除
+      db-config:
+        logic-delete-value: 1
+        logic-not-delete-value: 0
+
