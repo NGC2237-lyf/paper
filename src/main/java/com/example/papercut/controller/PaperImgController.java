@@ -25,8 +25,6 @@ public class PaperImgController {
     @Autowired
     private PaperImgService paperImgService;
 
-    private String uploadUrl = "D:/桌面/img";
-
     @GetMapping("/sum")
     @ApiOperation(value = "获取展品数量",response = Result.class)
     public Result<Integer> getPaperImgSum() {
