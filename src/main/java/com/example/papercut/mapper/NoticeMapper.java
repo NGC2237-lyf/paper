@@ -16,6 +16,6 @@ public interface NoticeMapper {
 
     public int instert(NoticeEntity noticeEntity);
 
-    public List<NoticeEntity> selectAll();
+    public List<NoticeEntity> selectAllN();
 
 }

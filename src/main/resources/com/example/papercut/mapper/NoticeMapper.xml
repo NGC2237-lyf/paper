@@ -36,11 +36,11 @@
         </trim>
             where id = #{id}
     </update>
-    <select id="selectAll" resultType="com.example.papercut.entity.UserEntity">
+    <select id="selectAllN" resultType="com.example.papercut.entity.NoticeEntity">
         select * from notice
     </select>
     <select id="selectNoticeByTitle" resultType="com.example.papercut.entity.NoticeEntity">
-        select * from notice where title = #{title}
+        select * from notice where title like concat('%',#{title},'%')
     </select>
 
 </mapper>

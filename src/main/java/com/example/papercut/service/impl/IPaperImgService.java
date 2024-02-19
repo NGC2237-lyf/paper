@@ -41,4 +41,19 @@ public class IPaperImgService implements PaperImgService {
     public PaperImgEntity serchTitle(String title) {
         return paperImgMapper.selectByTitle(title);
     }
+
+    @Override
+    public PaperImgEntity serchId(int id) {
+        return paperImgMapper.selectById(id);
+    }
+
+    @Override
+    public int delete(int id) {
+        return paperImgMapper.updateById(id);
+    }
+
+    @Override
+    public int updateById(int id) {
+        return paperImgMapper.update(id);
+    }
 }

@@ -48,8 +48,30 @@
         </trim>
             where id = #{id}
     </update>
+
+    <update id="updateById" >
+        update user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="status != null">
+                status = "失效",
+            </if>
+        </trim>
+            where id = #{id}
+    </update>
+
     <select id="selectAll" resultType="com.example.papercut.entity.UserEntity">
-        select * from user
+        select * from user where status = "正常"
     </select>
 
+    <select id="selectById" resultType="com.example.papercut.entity.UserEntity">
+        select * from user where id = #{id}
+    </select>
+
+    <select id="selectUserByNickNameM" resultType="com.example.papercut.entity.UserEntity">
+        select * from user where nick_name like concat('%',#{nickName},'%')
+    </select>
+
+    <select id="selectUserByNickName" resultType="com.example.papercut.entity.UserEntity">
+        select * from user where nick_name = #{nickName}
+    </select>
 </mapper>

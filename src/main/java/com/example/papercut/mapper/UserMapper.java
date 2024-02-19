@@ -10,13 +10,20 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    @Select("select * from user where nick_name = #{nickName}")
+    public List<UserEntity> selectUserByNickNameM(String nickName);
+
     public UserEntity selectUserByNickName(String nickName);
+
+    public UserEntity selectById(int id);
 
     public int update(UserEntity user);
 
     public int instert(UserEntity user);
 
     public List<UserEntity> selectAll();
+
+    public int updateById(int id);
+
+
 
 }

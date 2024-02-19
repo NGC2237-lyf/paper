@@ -44,33 +44,30 @@ public class PaperImgController {
 
     @PostMapping("/info")
     @ApiOperation(value = "上传展品信息",response = Result.class)
-    public Result<String> uploadPaperInfo(@ApiParam("图片") @RequestParam("file") MultipartFile[] files,
-                                          @ApiParam("图片描述") @RequestParam("展品信息") PaperImgEntity paperImgEntity) {
-        StringBuilder name = new StringBuilder();
-        for(int i=0;i<files.length;i++){
-            String fileName = files[i].getOriginalFilename();  // 文件名
-            File dest = new File(uploadUrl +'/'+ fileName);
-            if (i != files.length-1){
-                name.append(uploadUrl +'/'+ fileName+"-");
-            }else {
-                name.append(uploadUrl +'/'+ fileName);
-            }
-            if (!dest.getParentFile().exists()) {
-                dest.getParentFile().mkdirs();
-            }
-            try {
-                files[i].transferTo(dest);
-            } catch (Exception e) {
-                log.error("{}",e);
-                new Result<String>().error("程序错误，请重新上传");
-            }
-        }
-        paperImgEntity.setImg(name.toString());
+    public Result<String> uploadPaperInfo(@ApiParam("图片描述") @RequestParam("展品信息") PaperImgEntity paperImgEntity) {
+        paperImgEntity.setStatus("正常");
         paperImgService.insert(paperImgEntity);
         return new Result<String>().ok("上传成功");
     }
     @GetMapping("/serch/{title}")
+    @ApiOperation(value = "根据title获取展品信息（模糊搜索）",response = Result.class)
     public Result<PaperImgEntity> serchTitle(@ApiParam(value = "title") @PathVariable("title") String title) {
         return new Result<PaperImgEntity>().ok(paperImgService.serchTitle(title));
+    }
+
+    @GetMapping("/getById/{id}")
+    @ApiOperation(value = "根据id获取展品信息",response = Result.class)
+    public Result<PaperImgEntity> getById(@ApiParam(value = "id") @PathVariable("id") int id) {
+        return new Result<PaperImgEntity>().ok(paperImgService.serchId(id));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public Result delete(@ApiParam(value = "id") @PathVariable("id") int id) {
+        int delete = paperImgService.delete(id);
+        if (delete == 1){
+            return new Result().ok("删除成功");
+        }else {
+            return new Result().error("删除失败");
+        }
     }
 }

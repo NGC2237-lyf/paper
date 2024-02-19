@@ -15,4 +15,10 @@ public interface PaperImgMapper {
     public int insert(PaperImgEntity paperImgEntity);
 
     public PaperImgEntity selectByTitle(String title);
+
+    public PaperImgEntity selectById(int id);
+
+    public int updateById(int id);
+
+    public int update(int id);
 }

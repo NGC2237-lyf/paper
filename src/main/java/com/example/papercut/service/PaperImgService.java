@@ -15,4 +15,10 @@ public interface PaperImgService {
 
     public PaperImgEntity serchTitle(String title);
 
+    public PaperImgEntity serchId(int id);
+
+    public int delete(int id);
+
+    public int updateById(int id);
+
 }

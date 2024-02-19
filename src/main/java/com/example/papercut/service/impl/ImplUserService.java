@@ -66,7 +66,12 @@ public class ImplUserService implements UserService {
     }
 
     @Override
-    public UserEntity serchNickName(String nickName) {
-        return userMapper.selectUserByNickName(nickName);
+    public List<UserEntity> serchNickName(String nickName) {
+        return userMapper.selectUserByNickNameM(nickName);
+    }
+
+    @Override
+    public int delete(int id) {
+        return userMapper.updateById(id);
     }
 }

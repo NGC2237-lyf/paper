@@ -31,7 +31,7 @@ public class INoticeService implements NoticeService {
     public PageInfo<NoticeEntity> getNoticeList(int pageNum, int pageSize) {
         PageHelper.clearPage();
         PageHelper.startPage(pageNum, pageSize);
-        List<NoticeEntity> noticeEntities = noticeMapper.selectAll();
+        List<NoticeEntity> noticeEntities = noticeMapper.selectAllN();
         return new PageInfo<NoticeEntity>(noticeEntities);
     }
 

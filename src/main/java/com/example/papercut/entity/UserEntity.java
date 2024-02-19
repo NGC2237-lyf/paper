@@ -52,4 +52,8 @@ public class UserEntity {
     @TableField(value = "ip_dir")
     @ApiModelProperty(value = "ip地址", required = true)
     private String ipDir;
+
+    @TableField(value = "role")
+    @ApiModelProperty(value = "角色", required = true)
+    private int role;
 }

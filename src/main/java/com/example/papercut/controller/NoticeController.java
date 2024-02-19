@@ -41,6 +41,7 @@ public class NoticeController {
     }
 
     @GetMapping("/serch/{title}")
+    @ApiOperation(value = "根据标题模糊搜索",response = Result.class)
     public Result<NoticeEntity> serchNickName(@ApiParam(value = "标题") @PathVariable("title") String title) {
         return new Result<NoticeEntity>().ok(noticeService.serchTitle(title));
     }

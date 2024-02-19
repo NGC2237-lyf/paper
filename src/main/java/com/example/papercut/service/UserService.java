@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.http.HttpRequest;
+import java.util.List;
 
 public interface UserService {
 
@@ -16,5 +17,7 @@ public interface UserService {
 
     public PageInfo<UserEntity> getUserList(int pageNum, int pageSize);
 
-    public UserEntity serchNickName(String nickName);
+    public List<UserEntity> serchNickName(String nickName);
+
+    public int delete(int id);
 }

@@ -37,4 +37,9 @@ public class PaperImgEntity {
     @TableField(value = "paper_num")
     @ApiModelProperty(value = "展品数量", required = true)
     String paperNum;
+
+    @TableField(value = "status")
+    @ApiModelProperty(value = "状态", required = true)
+    String status;
+
 }
