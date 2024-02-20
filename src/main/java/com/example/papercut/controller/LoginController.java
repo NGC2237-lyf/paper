@@ -45,7 +45,11 @@ public class LoginController {
     public Result<UserEntity> login(@ApiParam(value = "用户名")  String nickName,
                                     @ApiParam(value = "密码")String password,
                                     HttpServletRequest httpRequest) {
-        return new Result<UserEntity>().ok(userService.login(nickName, password,httpRequest));
+        UserEntity login = userService.login(nickName, password, httpRequest);
+        if (login != null){
+            return new Result<UserEntity>().ok(login);
+        }
+        return new Result<UserEntity>().error();
     }
 
     @PostMapping("/regester")
