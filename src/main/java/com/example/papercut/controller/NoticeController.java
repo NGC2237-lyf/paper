@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 @Api("通知")
 @RestController
@@ -22,6 +23,7 @@ public class NoticeController {
     @PostMapping("/insert")
     @ApiOperation(value = "增加",response = Result.class)
     public Result<Integer> regester(@ApiParam(value = "通知信息") NoticeEntity noticeEntity) {
+        noticeEntity.setCreateTime(new Date());
         int insert = noticeService.insert(noticeEntity);
         return new Result<Integer>().ok(insert);
     }
