@@ -20,5 +20,5 @@ public interface PaperImgMapper {
 
     public int updateById(int id);
 
-    public int update(int id);
+    public int update(PaperImgEntity paperImgEntity);
 }

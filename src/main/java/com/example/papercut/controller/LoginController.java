@@ -89,7 +89,7 @@ public class LoginController {
 
     @PostMapping("/upload")
     @ApiOperation(value = "上传照片",response = Result.class)
-    public Result fileUpload(@RequestParam(value = "图片") MultipartFile file, Model model, HttpServletRequest request,
+    public Result fileUpload(@RequestParam(value = "img") MultipartFile file, Model model, HttpServletRequest request,
                              @ApiParam(value = "null=展品照片，其他=头像")String role,
                              @ApiParam(value = "id(若为展品，则id=0，为插入没有详细信息的展品，id不为0，则为更新指定id的展品照片)") int id) {
         String filePath;
@@ -121,8 +121,9 @@ public class LoginController {
             String filename = "/paper/" + fileName;
             PaperImgEntity paperImgEntity = new PaperImgEntity();
             paperImgEntity.setImg(filename);
+            paperImgEntity.setId(id);
             if (id == 0) paperImgService.insert(paperImgEntity);
-            else paperImgService.updateById(id);
+            else paperImgService.updateById(paperImgEntity);
 
         }else {
             String filename = "/user/" + fileName;

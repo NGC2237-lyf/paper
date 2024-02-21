@@ -53,7 +53,7 @@ public class IPaperImgService implements PaperImgService {
     }
 
     @Override
-    public int updateById(int id) {
-        return paperImgMapper.update(id);
+    public int updateById( PaperImgEntity paperImgEntity) {
+        return paperImgMapper.update(paperImgEntity);
     }
 }
