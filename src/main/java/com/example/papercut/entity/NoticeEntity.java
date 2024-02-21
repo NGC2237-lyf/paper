@@ -17,7 +17,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class NoticeEntity {
     @TableId(value = "id", type = IdType.AUTO)
-    @ApiModelProperty(value = "id", required = true)
+    @ApiModelProperty(value = "id")
     private int id;
     @TableField(value = "title")
     @ApiModelProperty(value = "标题", required = true)
@@ -32,7 +32,7 @@ public class NoticeEntity {
     private String status;
 
     @TableField(value = "create_time")
-    @ApiModelProperty(value = "创建时间", required = true)
+    @ApiModelProperty(value = "创建时间", required = false)
     private Date createTime;
 
     @TableField(value = "update_user")
