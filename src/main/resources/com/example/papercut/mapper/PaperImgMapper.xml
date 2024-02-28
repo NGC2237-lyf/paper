@@ -60,5 +60,8 @@
     <select id="selectById" resultType="com.example.papercut.entity.PaperImgEntity">
         select * from paper_img where id = #{id}
     </select>
+    <select id="selectMaxId" resultType="java.lang.Integer">
+        select max(id) from paper_img
+    </select>
 
 </mapper>

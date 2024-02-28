@@ -21,4 +21,6 @@ public interface PaperImgMapper {
     public int updateById(int id);
 
     public int update(PaperImgEntity paperImgEntity);
+
+    public int selectMaxId();
 }

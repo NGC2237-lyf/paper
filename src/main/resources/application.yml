@@ -37,6 +37,8 @@ server:
   servlet:
     encoding:
       charset: UTF-8
+  compression:
+    enabled: true
 
 pagehelper:
   helperDialect: mysql

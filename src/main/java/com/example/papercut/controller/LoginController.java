@@ -101,7 +101,7 @@ public class LoginController {
             paperImgEntity.setId(id);
             if (id == 0) paperImgService.insert(paperImgEntity);
             else paperImgService.updateById(paperImgEntity);
-
+            return new Result<>().ok(paperImgService.selectMaxId());
         }else {
             UserEntity userEntity = new UserEntity();
             userEntity.setAvactor(s);

@@ -21,4 +21,6 @@ public interface PaperImgService {
 
     public int updateById( PaperImgEntity paperImgEntity);
 
+    public int selectMaxId();
+
 }

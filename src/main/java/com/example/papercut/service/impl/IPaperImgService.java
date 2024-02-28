@@ -56,4 +56,9 @@ public class IPaperImgService implements PaperImgService {
     public int updateById( PaperImgEntity paperImgEntity) {
         return paperImgMapper.update(paperImgEntity);
     }
+
+    @Override
+    public int selectMaxId() {
+        return paperImgMapper.selectMaxId();
+    }
 }
