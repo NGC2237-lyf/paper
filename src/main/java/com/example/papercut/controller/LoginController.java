@@ -4,6 +4,7 @@ import com.example.papercut.entity.PaperImgEntity;
 import com.example.papercut.entity.UserEntity;
 import com.example.papercut.service.PaperImgService;
 import com.example.papercut.service.UserService;
+import com.example.papercut.utils.ImageToBase64Util;
 import com.example.papercut.utils.Result;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.*;
@@ -92,42 +93,17 @@ public class LoginController {
     public Result fileUpload(@RequestParam(value = "图片") MultipartFile file, Model model, HttpServletRequest request,
                              @ApiParam(value = "null=展品照片，其他=头像")String role,
                              @ApiParam(value = "id(若为展品，则id=0，为插入没有详细信息的展品，id不为0，则为更新指定id的展品照片)") int id) {
-        String filePath;
-        String fileName = file.getOriginalFilename();  // 文件名
+        String s = ImageToBase64Util.imgToBase64(file);
         if (role == null){
             //上传展品
-            filePath =  ClassLoader.getSystemClassLoader().getResource("").getPath()+"paper/"; // 上传后的路径
-        }else {
-            filePath =  ClassLoader.getSystemClassLoader().getResource("").getPath()+"user/";
-        }
-        if (file.isEmpty()) {
-            log.info("文件为空");
-        }
-        String suffixName = fileName.substring(fileName.lastIndexOf("."));  // 后缀名
-
-        fileName = UUID.randomUUID() + suffixName; // 新文件名
-        File dest = new File(filePath + fileName);
-        if (!dest.getParentFile().exists()) {
-            dest.getParentFile().mkdirs();
-        }
-        try {
-            file.transferTo(dest);
-        } catch (IOException e) {
-
-            e.printStackTrace();
-        }
-        if (role == null){
-            //上传展品
-            String filename = "/paper/" + fileName;
             PaperImgEntity paperImgEntity = new PaperImgEntity();
-            paperImgEntity.setImg(filename);
+            paperImgEntity.setImg(s);
             if (id == 0) paperImgService.insert(paperImgEntity);
             else paperImgService.updateById(id);
 
         }else {
-            String filename = "/user/" + fileName;
             UserEntity userEntity = new UserEntity();
-            userEntity.setAvactor(filename);
+            userEntity.setAvactor(s);
             userEntity.setId(id);
             userService.edit(userEntity);
         }
