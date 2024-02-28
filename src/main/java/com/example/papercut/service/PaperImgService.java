@@ -19,6 +19,6 @@ public interface PaperImgService {
 
     public int delete(int id);
 
-    public int updateById(int id);
+    public int updateById( PaperImgEntity paperImgEntity);
 
 }
