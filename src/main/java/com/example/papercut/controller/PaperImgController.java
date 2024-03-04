@@ -60,6 +60,7 @@ public class PaperImgController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @ApiOperation(value = "根据id删除展品信息",response = Result.class)
     public Result delete(@ApiParam(value = "id") @PathVariable("id") int id) {
         int delete = paperImgService.delete(id);
         if (delete == 1){
