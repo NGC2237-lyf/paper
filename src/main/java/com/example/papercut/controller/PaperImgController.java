@@ -42,7 +42,7 @@ public class PaperImgController {
 
     @PostMapping("/info")
     @ApiOperation(value = "上传展品信息",response = Result.class)
-    public Result<String> uploadPaperInfo(@ApiParam("图片描述") @RequestParam("展品信息") PaperImgEntity paperImgEntity) {
+    public Result<String> uploadPaperInfo(@ApiParam("图片描述") PaperImgEntity paperImgEntity) {
         paperImgEntity.setStatus("正常");
         paperImgService.updateById(paperImgEntity);
         return new Result<String>().ok("上传成功");
