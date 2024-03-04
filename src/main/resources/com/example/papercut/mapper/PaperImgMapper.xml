@@ -14,9 +14,9 @@
     </resultMap>
     <insert id="insert">
         insert into paper_img
-        (img, detail_text, paper_kind, paper_num, paper_title)
+        (img, detail_text, paper_kind, paper_num, paper_title,status)
         values
-        (#{img}, #{detailText}, #{paperKind}, #{paperNum}, #{paperTitle})
+        (#{img}, #{detailText}, #{paperKind}, #{paperNum}, #{paperTitle},"失效")
     </insert>
     <update id="updateById">
         update paper_img
