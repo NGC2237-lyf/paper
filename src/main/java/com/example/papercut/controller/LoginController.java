@@ -100,6 +100,7 @@ public class LoginController {
             paperImgEntity.setImg(s);
             paperImgEntity.setId(id);
             if (id == 0) {
+                paperImgEntity.setStatus("正常");
                 paperImgService.insert(paperImgEntity);
                 return new Result<>().ok(paperImgService.selectMaxId());
             }
