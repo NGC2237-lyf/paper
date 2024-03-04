@@ -40,6 +40,16 @@ public class PaperImgController {
         return new Result<PageInfo<PaperImgEntity>>().ok(paperImgList);
     }
 
+    @PutMapping("/update")
+    @ApiOperation(value = "根据id更新展品",response = Result.class)
+    public Result<String> updatePaper(@ApiParam("id") PaperImgEntity paperImgEntity) {
+        int update = paperImgService.updateById(paperImgEntity);
+        if (update == 1){
+            return new Result<String>().ok("更新成功");
+        }
+        return new Result<String>().error("更新失败");
+    }
+
     @PostMapping("/info")
     @ApiOperation(value = "上传展品信息",response = Result.class)
     public Result<String> uploadPaperInfo(@ApiParam("图片描述") PaperImgEntity paperImgEntity) {
