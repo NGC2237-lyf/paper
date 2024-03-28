@@ -5,10 +5,10 @@ spring:
       max-file-size: 100MB
       max-request-size: 100MB
   datasource:
-    username: wxk
-    password: wxk@20020626
-#    username: root
-#    password: QAZlyf207
+#    username: wxk
+#    password: wxk@20020626
+    username: root
+    password: QAZlyf207
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/papercut?characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2B8
     #   数据源其他配置

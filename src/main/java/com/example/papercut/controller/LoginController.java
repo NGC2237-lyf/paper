@@ -17,8 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.http.HttpRequest;
 import java.util.Calendar;
 import java.util.Date;
@@ -93,7 +92,34 @@ public class LoginController {
     public Result fileUpload(@RequestParam(value = "img") MultipartFile file, Model model, HttpServletRequest request,
                              @ApiParam(value = "null=展品照片，其他=头像")String role,
                              @ApiParam(value = "id(若为展品，则id=0，为插入没有详细信息的展品，id不为0，则为更新指定id的展品照片)") int id) {
-        String s = ImageToBase64Util.imgToBase64(file);
+        //将图片转为透明底色
+        String uploadDir = this.getClass().getResource("/").getPath() + "static/img/";
+        // 指定保存文件的目录
+        File targetDirectory = new File(uploadDir);
+        if (!targetDirectory.exists()) {
+            // 如果目录不存在，则创建
+            targetDirectory.mkdirs();
+        }
+        // 构建目标文件路径
+        String fileName = file.getOriginalFilename();
+        File targetFile = new File(targetDirectory, fileName);
+
+        // 保存文件
+        try (BufferedInputStream inputStream = new BufferedInputStream(file.getInputStream());
+             BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(targetFile))) {
+
+            byte[] buffer = new byte[1024];
+            int readCount;
+            while ((readCount = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, readCount);
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        String s = ImageToBase64Util.convertFileToBase64(uploadDir+"/"+fileName);
         if (role == null){
             //上传展品
             PaperImgEntity paperImgEntity = new PaperImgEntity();

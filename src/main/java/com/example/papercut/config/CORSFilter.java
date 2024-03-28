@@ -1,6 +1,7 @@
 package com.example.papercut.config;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.cors.CorsConfiguration;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -18,10 +19,6 @@ public class CORSFilter implements Filter {
         res.addHeader("Access-Control-Allow-Origin", "http://papercutting.leexn.ink");
         res.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
         res.addHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,sessionToken,X-TOKEN");
-        if (((HttpServletRequest) request).getMethod().equals("OPTIONS")) {
-            response.getWriter().println("ok");
-            return;
-        }
         chain.doFilter(request, response);
     }
     @Override
